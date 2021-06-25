@@ -14,15 +14,15 @@
 int main()
 {
 	int arr[M][M] = {
-		{0,  3,   3,   4,   5},
-		{6,   7,  8,   9,   10},
-		{11,   12,  13,  14,  15},
-		{16, 17,  18,   19,   1},
+		{2,  -3,   3,   4,   5},
+		{1,   7,  8,   9,   10},
+		{11,   12,  13,  14,  -15},
+		{16, 17,  18,   19,   9},
 		{21,  22,   23,   1,   25},
 	};
 	int i, j, k;
 	int sum, ok, * sums, sum_index;
-	int min_elem;
+	int min_elem = 10000000000;
 
 	for (j = 0; j < M; j++) {
 		ok = 1;
@@ -46,7 +46,7 @@ int main()
 	sum_index = 0;
 
 	// в верхней треугольной
-	for (i = 1; i < M - 1; i++) {
+	for (i = 0; i < M - 1; i++) {
 		j = i;
 		k = 0;
 		sum = 0;
@@ -57,6 +57,8 @@ int main()
 		}
 		sums[sum_index] = sum;
 		sum_index++;
+
+		if (sum < min_elem) min_elem = sum;
 	}
 
 	// в нижней треугольной
@@ -71,13 +73,15 @@ int main()
 		}
 		sums[sum_index] = sum;
 		sum_index++;
+
+		if (sum < min_elem) min_elem = sum;
 	}
 
-	min_elem = sums[0];
+//	min_elem = sums[0];
 	for (sum_index -= 1; sum_index >= 0; sum_index--) {
-		if (min_elem > sums[sum_index]) {
-			min_elem = sums[sum_index];
-		}
+//		if (min_elem > sums[sum_index]) {
+	//		min_elem = sums[sum_index];
+//		}
 	}
 
 	printf("min: %d\n", min_elem);
